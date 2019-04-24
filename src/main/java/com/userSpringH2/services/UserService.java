@@ -16,7 +16,7 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
-
+	
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<User>();
 		userRepository.findAll().forEach(user -> users.add(user));
@@ -32,10 +32,7 @@ public class UserService {
 		updatedUser.setId(user.getId());
 		updatedUser.setName(user.getName());
 		updatedUser.setUsername(user.getUsername());
-		//BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		//updatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		updatedUser.setPassword(UserUtility.encode(user.getPassword()));
-		updatedUser.setEmail(user.getEmail());
 		userRepository.save(updatedUser);
 	}
 
