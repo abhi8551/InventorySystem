@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.userSpringH2.entities.User;
 import com.userSpringH2.services.UserService;
-import com.userSpringH2.utility.UserUtility;
+import com.userSpringH2.utility.UserUtil;
 
 @RestController
 @RequestMapping("/api/")
@@ -24,7 +24,7 @@ public class UserController {
 	UserService userService;
 
 	@Autowired
-	UserUtility userUtility;
+	UserUtil userUtility;
 
 	@GetMapping("/users")
 	private List<User> getAllUsers() {

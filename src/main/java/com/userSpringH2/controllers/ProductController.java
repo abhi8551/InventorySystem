@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.userSpringH2.entities.Product;
 import com.userSpringH2.services.ProductService;
-import com.userSpringH2.utility.ProductUtility;
+import com.userSpringH2.utility.ProductUtil;
 
 @RestController
 @RequestMapping("/api/")
@@ -24,7 +24,7 @@ public class ProductController {
 	ProductService productService;
 
 	@Autowired
-	ProductUtility productUtility;
+	ProductUtil productUtility;
 
 	@GetMapping("/products")
 	private List<Product> getAllProducts() {

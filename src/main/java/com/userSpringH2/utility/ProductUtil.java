@@ -10,7 +10,7 @@ import com.userSpringH2.entities.Product;
 import com.userSpringH2.repositories.ProductRepository;
 
 @Service
-public class ProductUtility {
+public class ProductUtil {
 
 	@Autowired
 	ProductRepository productRepository;

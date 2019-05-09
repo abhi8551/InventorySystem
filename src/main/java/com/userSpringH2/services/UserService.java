@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.userSpringH2.entities.User;
 import com.userSpringH2.repositories.UserRepository;
-import com.userSpringH2.utility.UserUtility;
+import com.userSpringH2.utility.UserUtil;
 
 @Service
 public class UserService {
@@ -32,7 +32,7 @@ public class UserService {
 		updatedUser.setId(user.getId());
 		updatedUser.setName(user.getName());
 		updatedUser.setUsername(user.getUsername());
-		updatedUser.setPassword(UserUtility.encode(user.getPassword()));
+		updatedUser.setPassword(UserUtil.encode(user.getPassword()));
 		userRepository.save(updatedUser);
 	}
 

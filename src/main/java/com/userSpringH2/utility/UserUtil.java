@@ -10,7 +10,7 @@ import com.userSpringH2.entities.User;
 import com.userSpringH2.repositories.UserRepository;
 
 @Service
-public class UserUtility {
+public class UserUtil {
 
 	@Autowired
 	UserRepository userRepository;

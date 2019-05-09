@@ -7,7 +7,7 @@ import com.userSpringH2.entities.Inventory;
 import com.userSpringH2.repositories.InventoryRepository;
 
 @Service
-public class InventoryUtility {
+public class InventoryUtil {
 
 	@Autowired
 	InventoryRepository inventoryRepository;
@@ -16,5 +16,4 @@ public class InventoryUtility {
 		Inventory inventoryEntity = inventoryRepository.findById(productId);
 		return inventoryEntity != null;
 	}
-
 }

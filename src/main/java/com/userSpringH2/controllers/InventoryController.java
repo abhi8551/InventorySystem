@@ -21,16 +21,23 @@ public class InventoryController {
 	InventoryService inventoryService;
 	
 	/**
+	 * Save or update the entity into the inventory table
+	 * 
 	 * @param inventoryEntity
 	 * @return
 	 */
 	@PostMapping("/inventory")
 	private String saveProductInventory(@RequestBody Inventory inventoryEntity) {
-		inventoryService.saveOrUpdate(inventoryEntity);
+		if(inventoryEntity.isUpdate()) {
+			inventoryService.saveOrUpdate(inventoryEntity);
+			return "Inventory successfully updated!!";
+		}
 		return "Inventory successfully updated!!";
 	}
 	
 	/**
+	 * This method will retrieve all the inventory products
+	 * 
 	 * @return
 	 */
 	@GetMapping("/inventory")
