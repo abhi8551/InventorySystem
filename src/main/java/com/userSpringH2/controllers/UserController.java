@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.userSpringH2.entities.User;
 import com.userSpringH2.services.UserService;
 import com.userSpringH2.utility.UserUtil;
@@ -41,12 +42,13 @@ public class UserController {
 		userService.delete(id);
 	}
 
-	@PostMapping("/users")
-	private String savePerson(@RequestBody User user) throws UnsupportedEncodingException {
+	@PostMapping("/registration/users/")
+	private JsonNode registerUser(@RequestBody User user) throws UnsupportedEncodingException {
 		if(userUtility.checkIfPresent(user.getUsername())) {
-			return "User already present!!";
+			return userUtility.statusMessage("User already present!!");
 		}
 		userService.saveOrUpdate(user);
-		return "User successfully added!!";
+		return userUtility.statusMessage("User successfully added!!");
 	}
+	
 }
