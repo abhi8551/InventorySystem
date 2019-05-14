@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.userSpringH2.entities.Product;
+import com.userSpringH2.exceptions.ProductNotFoundException;
 import com.userSpringH2.repositories.ProductRepository;
 
 @Service
 public class ProductService {
-
 
 	@Autowired
 	ProductRepository productRepository;
@@ -23,7 +23,12 @@ public class ProductService {
 	}
 
 	public Product getProductById(int id) {
-		return productRepository.findById(id);
+		Product productForId = productRepository.findById(id);
+		if (productForId == null) {
+			throw new ProductNotFoundException("Product is not available for id : " + id);
+		} else {
+			return productForId;
+		}
 	}
 
 	public void saveOrUpdate(Product product) {
@@ -37,6 +42,4 @@ public class ProductService {
 	public void delete(Integer id) {
 		productRepository.deleteById(id);
 	}
-
-
 }

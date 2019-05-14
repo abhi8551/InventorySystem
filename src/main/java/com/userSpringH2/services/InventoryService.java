@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.userSpringH2.entities.Inventory;
 import com.userSpringH2.entities.InventoryDisplay;
 import com.userSpringH2.entities.Product;
+import com.userSpringH2.exceptions.ProductNotFoundException;
 import com.userSpringH2.repositories.InventoryRepository;
 import com.userSpringH2.repositories.ProductRepository;
 
@@ -21,11 +22,16 @@ public class InventoryService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public void saveOrUpdate(Inventory product) {
+	public void saveOrUpdate(Inventory inventoryUpdateInstance) {
 		Inventory inventory = new Inventory();
-		inventory.setProductId(product.getProductId());
-		inventory.setCount(product.getCount());
-		inventoryRepository.save(inventory);
+		if(productRepository.findById(inventoryUpdateInstance.getProductId())!=null) {
+			inventory.setProductId(inventoryUpdateInstance.getProductId());
+			inventory.setCount(inventoryUpdateInstance.getCount());
+			inventoryRepository.save(inventory);
+		} else {
+			throw new ProductNotFoundException(
+					"Product is not available for id : " + inventoryUpdateInstance.getProductId());
+		}
 	}
 	
 	public List<InventoryDisplay> getAllInventoryProducts() {
